@@ -26,10 +26,9 @@ CIAS2 is another version of CIAS, provides Login Authentication, User Management
 - Site Logo, Title, Favicon Change settings
 
 # Installation
-- Extract Source Code
-- Import cias_db.sql to your database
+- Extract Source Code to htdocs
+- Import db_cias2.sql to your database
 - Configure file database.php 
-- Default user: admin and password: admin
 
 # Default Login
 - Administrator :
