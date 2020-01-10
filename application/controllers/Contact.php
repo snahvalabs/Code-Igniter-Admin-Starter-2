@@ -17,7 +17,7 @@ class Contact extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('user_model');
+        $this->load->model('contact_model');
         $this->isLoggedIn();   
     }
     
@@ -47,11 +47,11 @@ class Contact extends BaseController
             
             $this->load->library('pagination');
             
-            $count = $this->user_model->userListingCount($searchText);
+            $count = $this->contact_model->contactListingCount($searchText);
 
             $returns = $this->paginationCompress ( "contact/contactListing/", $count, 10 );
             
-            $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
+            $data['userRecords'] = $this->contact_model->contactListing($searchText, $returns["page"], $returns["segment"]);
             
             $this->global['pageTitle'] = 'CIAS2 : Contact Listing';
             
