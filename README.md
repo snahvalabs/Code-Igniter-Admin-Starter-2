@@ -1,11 +1,11 @@
-# CI Admin Starter (CIAS)
+# CI Admin Starter (CIAS) 2
 
 ### Description
 
-CIAS provide Login Authentication, User Management, Web Setting and User Profile build on CodeIgniter framework(version 3.1.10). You can add more modules as needed.
+CIAS2 is another version of CIAS, provides Login Authentication, User Management, Web Setting and User Profile build on CodeIgniter framework(version 3.1.10). You can add more modules as needed.
 
 # Feature List
-- Built with CodeIgniter 3.x
+- Built with CodeIgniter 3.1.10
 - HMVC architecture
 - User registration
 - User Login
