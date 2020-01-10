@@ -60,6 +60,9 @@ $route['translate_uri_dashes'] = FALSE;
 $route['loginMe'] = 'login/loginMe';
 $route['dashboard'] = 'user';
 $route['logout'] = 'user/logout';
+
+$route['contact'] = 'contact/contactListing';
+
 $route['userListing'] = 'user/userListing';
 $route['userListing/(:num)'] = "user/userListing/$1";
 $route['addNew'] = "user/addNew";

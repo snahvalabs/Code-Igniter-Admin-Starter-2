@@ -158,8 +158,8 @@
               </a>
             </li>
             <li>
-              <a href="#" >
-                <i class="fa fa-plane"></i>
+              <a href="<?php echo base_url(); ?>contact" >
+                <i class="fa fa-users"></i>
                 <span>Contact List</span>
               </a>
             </li>
