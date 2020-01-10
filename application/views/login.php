@@ -20,7 +20,8 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="#"><b>CodeIgniter</b><br>Admin Starter 2</a>
+        <a href="#"><b>Kartu</b>Hore</a>
+        <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url(); ?>assets/dist/img/logo.png" alt="User profile picture">
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign In</p>
