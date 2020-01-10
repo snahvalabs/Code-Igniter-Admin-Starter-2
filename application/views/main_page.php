@@ -30,7 +30,7 @@
           <a href="<?php echo base_url() ?>registrasi">Registrasi</a>   |   <a href="<?php echo base_url() ?>login">Login</a><br>
 
         <form>
-            <input type="button"  value="Registration" onclick="window.location.href='<?php echo base_url().'registration';?>'" />
+            <input type="button" class="btn btn-primary btn-block btn-flat btn-color" value="Registration" onclick="window.location.href='<?php echo base_url().'registration';?>'" />
             <input type="button" class="btn btn-primary btn-block btn-flat btn-color" value="Login" onclick="window.location.href='<?php echo base_url().'login';?>'" />
         </form>
       </center>

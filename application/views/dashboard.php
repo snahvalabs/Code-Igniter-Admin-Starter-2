@@ -13,8 +13,8 @@
               <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                  <h3>150</h3>
-                  <p>New Tasks</p>
+                  <h3>Rp. 750.000</h3>
+                  <p>Saldo</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
@@ -26,8 +26,8 @@
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-                  <p>Completed Tasks</p>
+                  <h3>150</h3>
+                  <p>Contacts</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
@@ -52,8 +52,8 @@
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3>65</h3>
-                  <p>Reopened Issue</p>
+                  <h3>76</h3>
+                  <p>History</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>

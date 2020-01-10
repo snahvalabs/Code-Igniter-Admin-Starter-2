@@ -106,65 +106,35 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
+            
+
+
+            <?php
+            if($role == ROLE_EMPLOYEE)
+            {
+            ?>
             <li>
               <a href="#" >
                 <i class="fa fa-plane"></i>
-                <span>New Task</span>
+                <span>Top Up</span>
               </a>
             </li>
             <li>
               <a href="#" >
                 <i class="fa fa-ticket"></i>
-                <span>My Tasks</span>
+                <span>Transfer Voucher</span>
               </a>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-share"></i> <span>Multilevel</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                <li class="treeview">
-                  <a href="#"><i class="fa fa-circle-o"></i> Level One
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                    <li class="treeview">
-                      <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                        <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                      </a>
-                      <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-              </ul>
             </li>
             <?php
+            }
+
             if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
             {
             ?>
             <li>
               <a href="#" >
                 <i class="fa fa-thumb-tack"></i>
-                <span>Task Status</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" >
-                <i class="fa fa-upload"></i>
-                <span>Task Uploads</span>
+                <span>Reports</span>
               </a>
             </li>
             <?php
@@ -178,15 +148,27 @@
                 <span>Users</span>
               </a>
             </li>
-            <li>
-              <a href="#" >
-                <i class="fa fa-files-o"></i>
-                <span>Reports</span>
-              </a>
-            </li>
             <?php
             }
             ?>
+            <li>
+              <a href="#" >
+                <i class="fa fa-plane"></i>
+                <span>Scan Card</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" >
+                <i class="fa fa-plane"></i>
+                <span>Contact List</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" >
+                <i class="fa fa-plane"></i>
+                <span>History</span>
+              </a>
+            </li>
           </ul>
         </section>
         <!-- /.sidebar -->
