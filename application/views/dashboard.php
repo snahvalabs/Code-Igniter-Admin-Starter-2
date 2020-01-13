@@ -26,7 +26,7 @@
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>150</h3>
+                  <h3><?php echo $totalContacts; ?></h3>
                   <p>Contacts</p>
                 </div>
                 <div class="icon">
@@ -39,7 +39,7 @@
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>44</h3>
+                  <h3><?php echo $totalUsers; ?></h3>
                   <p>New User</p>
                 </div>
                 <div class="icon">

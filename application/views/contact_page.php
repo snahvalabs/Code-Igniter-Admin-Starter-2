@@ -33,6 +33,7 @@
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tr>
+                    	<th>No</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Mobile</th>
@@ -41,10 +42,12 @@
                     <?php
                     if(!empty($userRecords))
                     {
+                    	$i=1;
                         foreach($userRecords as $record)
                         {
                     ?>
                     <tr>
+                    	<td><?php echo $i ?></td>
                         <td><?php echo $record->name ?></td>
                         <td><?php echo $record->email ?></td>
                         <td><?php echo $record->mobile ?></td>
@@ -56,6 +59,7 @@
                         </td>
                     </tr>
                     <?php
+                        $i++;
                         }
                     }
                     ?>

@@ -30,6 +30,15 @@ class Contact_model extends CI_Model
         
         return $query->num_rows();
     }
+
+    function contactTotalCount()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_contacts');
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
     
     /**
      * This function is used to get the user listing count

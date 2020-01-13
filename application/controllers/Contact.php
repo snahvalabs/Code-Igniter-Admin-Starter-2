@@ -27,7 +27,10 @@ class Contact extends BaseController
     public function index()
     {
         $this->global['pageTitle'] = 'CIAS2 : Dashboard';
-        
+
+        $count = $this->contact_model->contactListingCount($searchText);
+        $this->global['totalContact'] = '3';
+
         $this->loadViews("dashboard", $this->global, NULL , NULL);
     }
     
@@ -50,7 +53,7 @@ class Contact extends BaseController
             $count = $this->contact_model->contactListingCount($searchText);
 
             $returns = $this->paginationCompress ( "contact/contactListing/", $count, 10 );
-            
+            $data['totalContact'] = $count;
             $data['userRecords'] = $this->contact_model->contactListing($searchText, $returns["page"], $returns["segment"]);
             
             $this->global['pageTitle'] = 'CIAS2 : Contact Listing';
