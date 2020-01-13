@@ -73,12 +73,10 @@ class Contact extends BaseController
         }
         else
         {
-            $this->load->model('user_model');
-            $data['roles'] = $this->user_model->getUserRoles();
-            
-            $this->global['pageTitle'] = 'CIAS2 : Add New User';
+            $this->load->model('contact_model');            
+            $this->global['pageTitle'] = 'CIAS2 : Add New Contact';
 
-            $this->loadViews("addNew", $this->global, $data, NULL);
+            $this->loadViews("addNewContact", $this->global, NULL, NULL);
         }
     }
 
@@ -103,7 +101,7 @@ class Contact extends BaseController
     /**
      * This function is used to add new user to the system
      */
-    function addNewUser()
+    function addNewContact()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -115,11 +113,9 @@ class Contact extends BaseController
             
             $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','required|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
             $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-            
+            $this->form_validation->set_rules('note','Notes','trim|max_length[200]');
+
             if($this->form_validation->run() == FALSE)
             {
                 $this->addNew();
@@ -128,26 +124,25 @@ class Contact extends BaseController
             {
                 $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
                 $email = strtolower($this->security->xss_clean($this->input->post('email')));
-                $password = $this->input->post('password');
-                $roleId = $this->input->post('role');
+                $note = strtolower($this->security->xss_clean($this->input->post('note')));
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
                 
-                $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId, 'name'=> $name,
-                                    'mobile'=>$mobile, 'createdBy'=>$this->vendorId, 'createdDtm'=>date('Y-m-d H:i:s'));
+                $contactInfo = array('email'=>$email,  'name'=> $name,
+                                    'mobile'=>$mobile, 'note'=>$note);
                 
-                $this->load->model('user_model');
-                $result = $this->user_model->addNewUser($userInfo);
+                $this->load->model('contact_model');
+                $result = $this->contact_model->addNewContact($contactInfo);
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New User created successfully');
+                    $this->session->set_flashdata('success', 'New Contact created successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'User creation failed');
+                    $this->session->set_flashdata('error', 'Contact creation failed');
                 }
                 
-                redirect('addNew');
+                redirect('contact/addNew');
             }
         }
     }
@@ -167,15 +162,14 @@ class Contact extends BaseController
         {
             if($userId == null)
             {
-                redirect('userListing');
+                redirect('contact');
             }
             
-            $data['roles'] = $this->user_model->getUserRoles();
-            $data['userInfo'] = $this->user_model->getUserInfo($userId);
+            $data['contactInfo'] = $this->contact_model->getContactInfo($userId);
             
-            $this->global['pageTitle'] = 'CIAS2 : Edit User';
+            $this->global['pageTitle'] = 'CIAS2 : Edit Contact';
             
-            $this->loadViews("editOld", $this->global, $data, NULL);
+            $this->loadViews("editOldContact", $this->global, $data, NULL);
         }
     }
     
@@ -183,7 +177,7 @@ class Contact extends BaseController
     /**
      * This function is used to edit the user information
      */
-    function editUser()
+    function editContact()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -193,53 +187,42 @@ class Contact extends BaseController
         {
             $this->load->library('form_validation');
             
-            $userId = $this->input->post('userId');
+            $contactId = $this->input->post('contactId');
             
             $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
             $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
             $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-            
+            $this->form_validation->set_rules('note','Notes','required|max_length[200]');
+
             if($this->form_validation->run() == FALSE)
             {
-                $this->editOld($userId);
+                $this->editOld($contactId);
             }
             else
             {
                 $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
                 $email = strtolower($this->security->xss_clean($this->input->post('email')));
-                $password = $this->input->post('password');
-                $roleId = $this->input->post('role');
                 $mobile = $this->security->xss_clean($this->input->post('mobile'));
+                $note = $this->security->xss_clean($this->input->post('note'));
+
+                $contactInfo = array();
                 
-                $userInfo = array();
+                $contactInfo = array('email'=>$email, 'name'=>ucwords($name), 
+                                    'mobile'=>$mobile, 'note'=>$note);
+
                 
-                if(empty($password))
-                {
-                    $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,
-                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
-                }
-                else
-                {
-                    $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
-                        'name'=>ucwords($name), 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 
-                        'updatedDtm'=>date('Y-m-d H:i:s'));
-                }
-                
-                $result = $this->user_model->editUser($userInfo, $userId);
+                $result = $this->contact_model->editContact($contactInfo, $contactId);
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'User updated successfully');
+                    $this->session->set_flashdata('success', 'Contact updated successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'User updation failed');
+                    $this->session->set_flashdata('error', 'Contact updation failed');
                 }
                 
-                redirect('userListing');
+                redirect('contact');
             }
         }
     }
@@ -249,7 +232,7 @@ class Contact extends BaseController
      * This function is used to delete the user using userId
      * @return boolean $result : TRUE / FALSE
      */
-    function deleteUser()
+    function deleteContact($contactId)
     {
         if($this->isAdmin() == TRUE)
         {
@@ -257,13 +240,19 @@ class Contact extends BaseController
         }
         else
         {
-            $userId = $this->input->post('userId');
-            $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+            // $userId = $this->input->post('contactId');            
+            $result = $this->contact_model->deleteContact($contactId);
             
-            $result = $this->user_model->deleteUser($userId, $userInfo);
-            
-            if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
-            else { echo(json_encode(array('status'=>FALSE))); }
+            redirect('contact');
+            // if ($result>0){
+
+            // }else{
+
+            // }
+
+
+            // if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
+            // else { echo(json_encode(array('status'=>FALSE))); }
         }
     }
     

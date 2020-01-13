@@ -28,6 +28,7 @@ class User extends BaseController
     public function index()
     {
         $this->global['pageTitle'] = 'CIAS2 : Dashboard';
+        
         $countUsers = $this->user_model->userListingCount('');
         $countContacts = $this->contact_model->contactTotalCount();
 
