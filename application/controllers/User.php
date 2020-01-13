@@ -18,6 +18,7 @@ class User extends BaseController
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('contact_model');
         $this->isLoggedIn();   
     }
     
@@ -27,8 +28,12 @@ class User extends BaseController
     public function index()
     {
         $this->global['pageTitle'] = 'CIAS2 : Dashboard';
-        
-        $this->loadViews("dashboard", $this->global, NULL , NULL);
+        $countUsers = $this->user_model->userListingCount('');
+        $countContacts = $this->contact_model->contactTotalCount();
+
+        $data['totalUsers'] = $countUsers;
+        $data['totalContacts'] = $countContacts;     
+        $this->loadViews("dashboard", $this->global, $data , NULL);
     }
     
     /**
