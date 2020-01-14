@@ -158,7 +158,7 @@
               </a>
             </li>
             <li>
-              <a href="<?php echo base_url(); ?>contact" >
+              <a href="<?php echo base_url(); ?>contacts" >
                 <i class="fa fa-users"></i>
                 <span>Contact List</span>
               </a>

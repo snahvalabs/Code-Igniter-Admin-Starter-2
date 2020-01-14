@@ -2,18 +2,10 @@
 
 require APPPATH . '/libraries/BaseController.php';
 
-/**
- * Class : User (UserController)
- * User Class to control all user related operations.
- * @author : Kishor Mali
- * @version : 1.1
- * @since : 15 November 2016
- */
+
 class Contact extends BaseController
 {
-    /**
-     * This is default constructor of the class
-     */
+
     public function __construct()
     {
         parent::__construct();
@@ -21,25 +13,17 @@ class Contact extends BaseController
         $this->isLoggedIn();   
     }
     
-    /**
-     * This function used to load the first screen of the user
-     */
+
     public function index()
     {
         $this->global['pageTitle'] = 'CIAS2 : Dashboard';
-
-        $count = $this->contact_model->contactListingCount($searchText);
-        $this->global['totalContact'] = '3';
-
         $this->loadViews("dashboard", $this->global, NULL , NULL);
     }
     
-    /**
-     * This function is used to load the user list
-     */
+    
     function contactListing()
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == FALSE)
         {
             $this->loadThis();
         }
@@ -67,7 +51,7 @@ class Contact extends BaseController
      */
     function addNew()
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == FALSE)
         {
             $this->loadThis();
         }
@@ -80,30 +64,13 @@ class Contact extends BaseController
         }
     }
 
-    /**
-     * This function is used to check whether email already exist or not
-     */
-    function checkEmailExists()
-    {
-        $userId = $this->input->post("userId");
-        $email = $this->input->post("email");
-
-        if(empty($userId)){
-            $result = $this->user_model->checkEmailExists($email);
-        } else {
-            $result = $this->user_model->checkEmailExists($email, $userId);
-        }
-
-        if(empty($result)){ echo("true"); }
-        else { echo("false"); }
-    }
     
     /**
      * This function is used to add new user to the system
      */
     function addNewContact()
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == FALSE)
         {
             $this->loadThis();
         }
@@ -154,7 +121,7 @@ class Contact extends BaseController
      */
     function editOld($userId = NULL)
     {
-        if($this->isAdmin() == TRUE || $userId == 1)
+        if($this->isAdmin() == FALSE)
         {
             $this->loadThis();
         }
@@ -179,7 +146,7 @@ class Contact extends BaseController
      */
     function editContact()
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == FALSE)
         {
             $this->loadThis();
         }
@@ -234,7 +201,7 @@ class Contact extends BaseController
      */
     function deleteContact($contactId)
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == FALSE)
         {
             echo(json_encode(array('status'=>'access')));
         }

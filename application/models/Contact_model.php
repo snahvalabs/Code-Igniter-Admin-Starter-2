@@ -4,6 +4,18 @@
 class Contact_model extends CI_Model
 {
 
+    function addNewContact($contactInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('tbl_contacts', $contactInfo);
+        
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        
+        return $insert_id;
+    }
+
     function contactListingCount($searchText = '')
     {
         $this->db->select('*');
@@ -53,17 +65,7 @@ class Contact_model extends CI_Model
     }
     
     
-    function addNewContact($contactInfo)
-    {
-        $this->db->trans_start();
-        $this->db->insert('tbl_contacts', $contactInfo);
-        
-        $insert_id = $this->db->insert_id();
-        
-        $this->db->trans_complete();
-        
-        return $insert_id;
-    }
+
     
 
     function getContactInfo($userId)
