@@ -115,16 +115,34 @@
             ?>
             <li>
               <a href="#" >
-                <i class="fa fa-plane"></i>
+                <i class="fa fa-money"></i>
                 <span>Top Up</span>
               </a>
             </li>
             <li>
               <a href="#" >
-                <i class="fa fa-ticket"></i>
+                <i class="fa fa-send"></i>
                 <span>Transfer Voucher</span>
               </a>
             </li>
+            <li>
+              <a href="#" >
+                <i class="fa fa-ticket"></i>
+                <span>Scan Card</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo base_url(); ?>contacts" >
+                <i class="fa fa-users"></i>
+                <span>Contact List</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" >
+                <i class="fa fa-history"></i>
+                <span>History</span>
+              </a>
+            </li>            
             <?php
             }
 
@@ -152,21 +170,9 @@
             }
             ?>
             <li>
-              <a href="#" >
-                <i class="fa fa-plane"></i>
-                <span>Scan Card</span>
-              </a>
-            </li>
-            <li>
-              <a href="<?php echo base_url(); ?>contacts" >
-                <i class="fa fa-users"></i>
-                <span>Contact List</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" >
-                <i class="fa fa-plane"></i>
-                <span>History</span>
+              <a href="<?php echo base_url(); ?>logout">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
               </a>
             </li>
           </ul>

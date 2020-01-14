@@ -19,6 +19,7 @@ class User extends BaseController
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('contacts_model');
+        $this->load->model('saldo_model');
         $this->isLoggedIn();   
     }
     
@@ -32,9 +33,11 @@ class User extends BaseController
         $countUsers = $this->user_model->userListingCount('');
         $uid = $this->global['uid'];
         $countContacts = $this->contacts_model->contactTotalCount('',$uid);
+        $balance = $this->saldo_model->getSaldoInfo($uid);
 
         $data['totalUsers'] = $countUsers;
-        $data['totalContacts'] = $countContacts;     
+        $data['totalContacts'] = $countContacts;
+        $data['totalBalance'] = $balance->saldo;     
         $this->loadViews("dashboard", $this->global, $data , NULL);
     }
     
