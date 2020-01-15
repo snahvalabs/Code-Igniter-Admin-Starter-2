@@ -37,7 +37,7 @@ class User extends BaseController
 
         $data['totalUsers'] = $countUsers;
         $data['totalContacts'] = $countContacts;
-        $data['totalBalance'] = $balance->saldo;     
+        $data['totalBalance'] = number_format($balance->saldo,2,',','.');     
         $this->loadViews("dashboard", $this->global, $data , NULL);
     }
     

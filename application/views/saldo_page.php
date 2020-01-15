@@ -2,7 +2,7 @@
 $name = $saldoInfo->name;
 $email = $saldoInfo->email;
 $mobile = $saldoInfo->mobile;
-$saldo = $saldoInfo->saldo;
+$saldo = number_format($saldoInfo->saldo,2,',','.');
 $update = $saldoInfo->updateDate;
 ?>
 
@@ -26,7 +26,7 @@ $update = $saldoInfo->updateDate;
                 <div class="box box-warning">
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url(); ?>assets/dist/img/avatar.png" alt="User profile picture">
-                        <h3 class="profile-username text-center"><?= $saldo ?></h3>
+                        <h3 class="profile-username text-center">Rp. <?= $saldo ?></h3>
 
                         <p class="text-muted text-center">Saldo</p>
 
