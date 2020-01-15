@@ -114,13 +114,13 @@
             {
             ?>
             <li>
-              <a href="#" >
+              <a href="<?php echo base_url(); ?>topup" >
                 <i class="fa fa-money"></i>
                 <span>Top Up</span>
               </a>
             </li>
             <li>
-              <a href="#" >
+              <a href="<?php echo base_url(); ?>transfer" >
                 <i class="fa fa-send"></i>
                 <span>Transfer Voucher</span>
               </a>
@@ -138,7 +138,7 @@
               </a>
             </li>
             <li>
-              <a href="#" >
+              <a href="<?php echo base_url(); ?>user/transhistory" >
                 <i class="fa fa-history"></i>
                 <span>History</span>
               </a>
@@ -166,9 +166,22 @@
                 <span>Users</span>
               </a>
             </li>
+            <li>
+              <a href="<?php echo base_url(); ?>voucher">
+                <i class="fa fa-ticket"></i>
+                <span>Voucher</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?php echo base_url(); ?>login-history">
+                <i class="fa fa-history"></i>
+                <span>Login History</span>
+              </a>
+            </li>             
             <?php
             }
             ?>
+            <hr>
             <li>
               <a href="<?php echo base_url(); ?>logout">
                 <i class="fa fa-sign-out"></i>

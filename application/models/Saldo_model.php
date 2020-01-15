@@ -16,6 +16,24 @@ class Saldo_model extends CI_Model
         
         return $query->row();
     }
+
+    function getSaldo($userId)
+    {
+        $this->db->select('saldo');
+        $this->db->from('tbl_saldo');
+        $this->db->where('userId', $userId);
+        $query = $this->db->get();
+        
+        return $query->row()->saldo;
+    }
+
+    function updateSaldo($saldoInfo, $userId)
+    {
+        $this->db->where('userId', $userId);
+        $query = $this->db->update('tbl_saldo', $saldoInfo);
+        
+        return $query;
+    }
     
 }
 

@@ -20,6 +20,7 @@ class User extends BaseController
         $this->load->model('user_model');
         $this->load->model('contacts_model');
         $this->load->model('saldo_model');
+        $this->load->model('transaction_model');
         $this->isLoggedIn();   
     }
     
@@ -34,10 +35,12 @@ class User extends BaseController
         $uid = $this->global['uid'];
         $countContacts = $this->contacts_model->contactTotalCount('',$uid);
         $balance = $this->saldo_model->getSaldoInfo($uid);
+        $countTrans = $this->transaction_model->totalTrans('',$uid);
 
         $data['totalUsers'] = $countUsers;
         $data['totalContacts'] = $countContacts;
-        $data['totalBalance'] = number_format($balance->saldo,2,',','.');     
+        $data['totalBalance'] = number_format($balance->saldo,2,',','.');  
+        $data['totalTrans']  = $countTrans;  
         $this->loadViews("dashboard", $this->global, $data , NULL);
     }
     
@@ -440,6 +443,30 @@ class User extends BaseController
 
         return $return;
     }
+
+    function transHistory()
+    {
+            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            $data['searchText'] = $searchText;
+            $uid = $this->global['uid'];
+            
+            $this->load->library('pagination');
+            
+            $count = $this->transaction_model->totalTrans($searchText,$uid);
+            $returns = $this->paginationCompress ( "user/transHistoy", $count, 10 );
+            $data['userRecords'] = $this->transaction_model->getAllTransFull($searchText, $returns["page"], $returns["segment"],$uid); 
+            
+            $this->global['pageTitle'] = 'Kartu Hore : Transaction History';
+            
+            $this->loadViews("transaction_page", $this->global, $data, NULL);
+    }
+
+    function deleteTrans($transId)
+    {           
+        $result = $this->transaction_model->deleteTrans($transId);
+        redirect('user/transhistory');
+    }
+
 }
 
 ?>

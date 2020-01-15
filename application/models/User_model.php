@@ -292,6 +292,21 @@ class User_model extends CI_Model
         return $query->row();
     }
 
+    function getAllUserByRole($roleId)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_users');
+        $this->db->where('roleId',$roleId   );
+
+        $this->db->order_by('userId', 'ASC');
+
+        $query = $this->db->get();
+
+        $result = $query->result();   
+        return $result;
+
+    }
+
 }
 
   
