@@ -68,20 +68,6 @@ $update = $saldoInfo->updateDate;
                                         <div class="col-md-12">                                
                                             <!-- select -->
                                             <div class="form-group">
-                                              <label>Contact List</label>
-                                              <select class="form-control" id="contact" name="contact">
-                                                    <?php foreach($recordContact as $rc){ ?>
-                                                    <option value="<?php echo $rc->contactId; ?>"><?php echo $rc->name; ?>  
-                                                    </option>
-                                                    <?php } ?>
-                                              </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">                                
-                                            <!-- select -->
-                                            <div class="form-group">
                                               <label>Receiver List</label>
                                               <select class="form-control" id="receiver" name="receiver">
                                                     <?php foreach($recordUser as $ru){ 
