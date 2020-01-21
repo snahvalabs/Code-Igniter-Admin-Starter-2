@@ -6,7 +6,6 @@ CIAS2 is another version of CIAS, provides Login Authentication, User Management
 
 # Feature List
 - Built with CodeIgniter 3.1.10
-- HMVC architecture
 - User registration
 - User Login
 - Login with email or username
